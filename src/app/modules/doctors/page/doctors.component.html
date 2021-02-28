@@ -1,0 +1,30 @@
+<div class="container">
+    <!--dla każdego doktora tak samo-->
+    <div class="row list" *ngFor="let doctor of doctors?.users; let i = index">
+        <div class="col-md-12">
+            <hr class="featurette-divider">
+            <div class="row data">
+                <div class="col-md-7">
+                    <h1 class="name featurette-heading">{{doctor.firstName}} {{doctor.lastName}}</h1>
+                    <p class="specialization lead">{{doctor.specialization}}</p>
+                </div>
+                <div class="col-md-5">
+                    <span matTooltip="By móc się zarejestrować, musisz być zalogowany"
+                        [matTooltipDisabled]="this.currentUser">
+                        <button class="visit btn btn-primary" [routerLink]="['/visit', doctor._id]" mat-raised-button
+                            [disabled]="this.currentUser == null"> Umów wizytę &raquo;
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr class="featurette-divider">
+</div>
+
+<!--
+<ng-template #noDoctors>
+    <hr>
+    <h5>Przykro nam! Aktualnie żaden dentysta nie pracuje w naszej przychodni </h5>
+</ng-template>
+-->

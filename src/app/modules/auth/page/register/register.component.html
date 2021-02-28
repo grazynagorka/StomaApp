@@ -1,0 +1,25 @@
+<div class="wrapper fadeInDown zero-raduis">
+    <div id="formContent">
+      <div class="fadeIn first">
+        <h2 class="my-5">Stwórz swoje konto!</h2>
+      </div>
+  
+      <form [formGroup]="registerForm" (ngSubmit)="register()">
+        <input type="text" id="firstname" class="fadeIn second zero-raduis" autocomplete="off" name="firstname" placeholder="Imię" formControlName="firstname"
+          />
+        <p *ngIf="submitted && f.firstname.errors">Imię musi zawierać conajmniej 3 znaki</p>
+        <input type="text" id="lastname" class="fadeIn third zero-raduis" autocomplete="off" name="lastname" placeholder="Nazwisko" formControlName="lastname">
+        <p *ngIf="submitted && f.firstname.errors">Nazwisko musi zawierać conajmniej 3 znaki</p>
+        <input type="email" id="email" class="fadeIn second zero-raduis" autocomplete="off" name="email" placeholder="E-mail" formControlName="email">
+        <p *ngIf="submitted && f.firstname.errors">Pole musi zawierać format e-mail</p>
+        <input type="password" id="password" class="fadeIn second zero-raduis" autocomplete="off" name="password" minlength="8" placeholder="Hasło (minimum 8 znaków)" formControlName="password">
+        <p *ngIf="submitted && f.firstname.errors">Hasło musi zawierać minumum 7 znaków</p>
+        <input type="password" id="password_repeat" class="fadeIn second zero-raduis" autocomplete="off" name="password_repeat" placeholder="Powtórz hasło" ngControl="password_repeat" required formControlName="password_repeat" pattern="{{f.password.value}}">
+        <p *ngIf="submitted && f.firstname.errors">Hasła nie są takie same!</p>
+        <hr>
+        <input type="submit" class="fadeIn fourth zero-raduis" value="Utwórz konto">
+        <hr>
+        <input type="submit-back" routerLink="../login" class="fadeIn fourth zero-raduis" value="Wróć do logowania">
+      </form>
+    </div>
+  </div>

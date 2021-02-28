@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="row mt-3">
+    <div class="col text-center">
+      <h1> Twój Profil</h1>
+      <p>{{currentUser?.lastName}}</p>
+      <!--próje się, ale działa-->
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-md-6 text-center">
+      <p>Twoje dotychczasowe wizyty:</p>
+      <div *ngFor="let visit of visits">
+        {{visit.date}} {{visit.doctor.firstName}} {{visit.doctor.lastName}}
+      </div>
+    </div>
+    <div class="col-md-6 text-center">
+      <p>Wszystkie wykonane zabiegi:</p>
+      <div *ngFor="let visit of visits">
+        {{visit.description}}
+      </div>
+      <button mat-raised-button>Pobierz</button>
+    </div>
+  </div>
+  <hr>
+  <!--Tutaj wyświetlają się najbliże wizyty od dnia dzisiejszego-->
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <p>Najbliższa wizyta:</p>
+    </div>
+  </div>
+  <hr>
+  <!--Ta część wyświetla się tylko wtedy, gdy zalogowany jest asystent. Przekierowywuje on do strony, gdzie wyświetla się lista lekarz z którymi może dzisiaj pracować-->
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <button *ngIf="currentUser && (currentUser?.job == 'assistant')" class="work" mat-raised-button
+        (click)="openList()">Praca</button>
+      <button *ngIf="currentUser && (currentUser?.isAdmin == true)" class="admin" mat-raised-button
+        routerLink="/admin">Praca - Administator</button>
+    </div>
+  </div>
+  <div class="row" *ngIf="showMe">
+    <div class="col-md-12">
+      <hr>
+      <button *ngFor="let doctor of doctors?.users" class="listOfDoctors" mat-raised-button
+        [routerLink]="['/work', doctor._id]">{{doctor.firstName}} {{doctor.lastName}}</button>
+    </div>
+  </div>
+
+
+
+  <!--Wyloguj-->
+  <div class="row">
+    <div class="col text-center">
+      <button class="logout" mat-raised-button (click)="logOut()">Wyloguj</button>
+    </div>
+  </div>
+</div>

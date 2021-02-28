@@ -1,0 +1,14 @@
+<div class="container" style="text-align: center" *ngIf="visit">
+  <hr>
+<h1 mat-dialog-title>Dodaj wykonany zabieg</h1>
+<hr>
+<p>Imię i nazwisko pacjenta: {{visit?.visit.patient.firstName}} {{visit?.visit.patient.lastName}}</p>
+<p>Data i godzina: {{visit?.visit.date}} {{visit?.visit.begin}}</p>
+  <mat-form-field>
+    <input matInput placeholder="Zabieg" id="description" name="description" [(ngModel)]="visit?.visit.description" #description="ngModel">
+  </mat-form-field>
+<div mat-dialog-actions>
+  <button mat-button (click)="goBack()">Anuluj</button>
+  <button mat-button (click)="updateVisit()">Zapisz</button>
+</div>
+</div>

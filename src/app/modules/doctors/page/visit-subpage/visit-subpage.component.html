@@ -1,0 +1,45 @@
+<div class="container" *ngIf="doctor">
+<div class="row dentVisit">
+    <div class="col-md-12">
+      <hr class="featurette-divider">
+      <div class="row">
+        <div class="col-md-7">
+          <a> </a>
+          <h2 class="featurette-heading name">{{doctor.user.firstName}} {{doctor.user.lastName}}</h2>
+        </div>
+        <div class="col-md-5">
+          <p class="lead">{{doctor.user.specialization}}</p>
+        </div>
+      </div>
+      <hr class="featurette-divider">
+      <div class="row date">
+        <div class="col-md-7 text-center">
+          <mat-form-field appearance="fill">
+            <mat-label>Wybierz dzień</mat-label>
+            <input matInput 
+            [matDatepicker]="picker" 
+            [matDatepickerFilter]="dateFilter"
+            [min]="minDate"
+            autocomplete="off"
+            [(ngModel)]="formDate">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="col-md-5 text-center">
+              <mat-form-field appearance="fill">
+                <mat-label>Wybierz godzinę</mat-label>
+              <input matInput [format]=24 
+              [ngxTimepicker]="timepicker"
+              autocomplete="off"
+              [(ngModel)]="formTime">
+              <ngx-material-timepicker #timepicker></ngx-material-timepicker>
+            </mat-form-field>
+          </div>
+      </div>
+    </div>
+      <div class="saveVisit col-md-12 text-center">
+      <button class="saveVisit" mat-raised-button (click)="addVisit()">Zapisz wizytę</button>
+      </div>
+</div>
+</div>

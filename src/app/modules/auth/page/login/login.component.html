@@ -1,0 +1,21 @@
+<div class="wrapper fadeInDown zero-raduis">
+  <div id="formContent">
+    <div class="fadeIn first">
+      <h2 class="my-5">Logowanie</h2>
+    </div>
+
+    <!-- Login -->
+    <form #form="ngForm" (ngSubmit)="logIn(form)">
+      <input type="email" class="fadeIn second zero-raduis" autocomplete="off" (ngModel)="email" id="email" name="email"
+        placeholder="e-mail" #email="ngModel">
+      <p *ngIf="email.invalid && (email.dirty || email.touched)"> Email niepoprawny!</p>
+      <input type="password" class="fadeIn third zero-raduis" autocomplete="off" (ngModel)="password" id="password"
+        name="password" placeholder="hasło" required minlength="7" #password="ngModel">
+      <p *ngIf="password.invalid && (password.dirty || password.touched)"> Hasło jest niepoprawne! </p>
+      <input type="submit" class="fadeIn fourth zero-raduis" value="Zaloguj">
+      <hr>
+      <h3>Nie masz konta?</h3>
+      <input type="button" routerLink="/auth/singin" class="fadeIn fourth zero-raduis pc" value="Zarejestuj">
+    </form>
+  </div>
+</div>

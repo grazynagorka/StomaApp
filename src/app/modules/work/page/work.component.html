@@ -1,0 +1,46 @@
+<div class="container" *ngIf="doctor">
+  <div class="row mt-3">
+    <div class="col text-center">
+      <h1>{{doctor?.user.firstName}} {{doctor?.user.lastName}}</h1>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-md-12 todayDate">
+      <p>Dzisiaj jest</p>
+      {{today}}
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-md-12 date">
+      <mat-form-field appearance="fill" >
+        <mat-label>Wybierz dzień pracy</mat-label>
+        <input matInput
+        autocomplete="off"
+        [matDatepicker]="picker" 
+        [matDatepickerFilter]="dateFilter"
+        [min]="minDate"
+        (dateInput)="inputEvent($event)"
+        >
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </div>
+  <hr>
+  <!--Tutaj wyświetlają się najbliże wizyty od dnia dzisiejszego-->
+  <div class="row">
+    <div class="col-md-12">
+      <p>Wizyty:</p>
+      <div class="row visits" *ngFor="let visit of visits?.visits">
+        <div class="col-md-6 data">
+          <p>{{visit.begin}} {{visit.patient.firstName}} {{visit.patient.lastName}}</p>
+        </div>
+        <div class="col-md-6 buttons">
+          <a mat-button color="warn"(click)="deleteVisit(visit._id)">Anuluj wizytę</a> <a mat-raised-button [routerLink]="['/treatment', visit._id]">Zabieg</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr>
